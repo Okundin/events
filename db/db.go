@@ -13,7 +13,5 @@ func InitDB() (*sql.DB, error) {
 		log.Fatalf("Error connecting to the DB: v%\n", err)
 	}
 
-	defer db.Close()
-
 	return db, nil
 }

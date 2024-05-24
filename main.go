@@ -16,4 +16,10 @@ func main() {
 
 	log.Println("Connected to events DB")
 
+	err = db.Ping()
+	if err != nil {
+		log.Fatalf("Error pinging DB: v%\n", err)
+	}
+	log.Println("Pinged database!")
+
 }
