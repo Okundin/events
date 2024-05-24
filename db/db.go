@@ -7,11 +7,13 @@ import (
 	_ "github.com/jackc/pgx/v5/stdlib"
 )
 
+var DB *sql.DB
+
 func InitDB() (*sql.DB, error) {
-	db, err := sql.Open("pgx", "host=localhost port=5432 dbname=events user=postgres password=postgres")
+	DB, err := sql.Open("pgx", "host=localhost port=5432 dbname=events user=postgres password=postgres")
 	if err != nil {
 		log.Fatalf("Error connecting to the DB: v%\n", err)
 	}
 
-	return db, nil
+	return DB, nil
 }
