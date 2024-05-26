@@ -2,6 +2,7 @@ package main
 
 import (
 	"events-app/db"
+	"events-app/routes"
 	"log"
 
 	"github.com/gin-gonic/gin"
@@ -9,15 +10,18 @@ import (
 
 func main() {
 	// connecting to the events DB
-	db, err := db.InitDB()
+	dtbs, err := db.InitDB()
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	defer db.Close()
+	defer dtbs.Close()
 
 	// create HTTP server
 	server := gin.Default()
+
+	// HTTP routes from routes.go
+	routes.RegisterRoutes(server)
 
 	// start server at localhost:8080
 	err = server.Run(":8080")
