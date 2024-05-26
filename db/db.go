@@ -10,7 +10,8 @@ import (
 var DB *sql.DB
 
 func InitDB() (*sql.DB, error) {
-	DB, err := sql.Open("pgx", "host=localhost port=5432 dbname=events user=postgres password=postgres")
+	var err error
+	DB, err = sql.Open("pgx", "host=localhost port=5432 dbname=events user=postgres password=postgres")
 	if err != nil {
 		log.Fatalf("Error connecting to the DB: v%\n", err)
 	}
