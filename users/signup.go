@@ -5,6 +5,7 @@ import (
 	"events-app/db"
 	"log"
 	"net/http"
+	"strings"
 
 	"github.com/gin-gonic/gin"
 )
@@ -26,7 +27,11 @@ func SignUp(ctx *gin.Context) {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
+	// bring login and email strings entered by new user to lower case
+	user.Login = strings.ToLower(user.Login)
+	user.Email = strings.ToLower(user.Email)
 
+	// check if login and email are unique before posting to the table
 	err = user.Unique()
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{"!message": "User login or email not unique!", "error": err.Error()})
@@ -40,7 +45,7 @@ func SignUp(ctx *gin.Context) {
 		return
 	}
 
-	ctx.JSON(http.StatusCreated, gin.H{"message": "User successfully created!"})
+	ctx.JSON(http.StatusCreated, gin.H{"Congrats!": "User successfully created!", "login": user.Login, "email": user.Email})
 
 }
 
