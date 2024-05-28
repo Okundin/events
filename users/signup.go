@@ -59,7 +59,9 @@ func (u *User) New() error {
 
 	defer stmt.Close()
 
-	result, err := stmt.Exec(u.Login, u.Email, u.Password)
+	hashedPswd := HashPswd(u.Password)
+
+	result, err := stmt.Exec(u.Login, u.Email, hashedPswd)
 	if err != nil {
 		return errors.New(err.Error())
 	}
