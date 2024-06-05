@@ -12,7 +12,7 @@ import (
 
 type User struct {
 	ID        int64
-	Login     string `binding:"required"`
+	Login     string
 	Email     string `binding:"required"`
 	Password  string `binding:"required"`
 	FirstName string
