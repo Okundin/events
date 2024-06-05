@@ -16,3 +16,8 @@ func HashPswd(orgPswd string) (hashPswd string) {
 
 	return hashPswd
 }
+
+func CheckPswd(userPswd, dbPswd string) bool {
+	err := bcrypt.CompareHashAndPassword([]byte(dbPswd), []byte(userPswd))
+	return err == nil
+}
