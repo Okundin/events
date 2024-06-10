@@ -12,11 +12,9 @@ import (
 
 type User struct {
 	ID        int64
-	Login     string
-	Email     string `binding:"required"`
-	Password  string `binding:"required"`
-	FirstName string
-	LastName  string
+	Login     string `json:"login" binding:"required"`
+	Email     string `json:"email" binding:"required"`
+	Password  string `json:"password" binding:"required"`
 	CreatedAt time.Time
 }
 
