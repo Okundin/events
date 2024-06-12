@@ -5,18 +5,9 @@ import (
 	"events-app/db"
 	"net/http"
 	"strings"
-	"time"
 
 	"github.com/gin-gonic/gin"
 )
-
-type User struct {
-	ID        int64
-	Login     string `json:"login" binding:"required"`
-	Email     string `json:"email" binding:"required"`
-	Password  string `json:"password" binding:"required"`
-	CreatedAt time.Time
-}
 
 func SignUp(ctx *gin.Context) {
 	// Parsing users' JSON POST request
