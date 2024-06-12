@@ -1,7 +1,7 @@
-PUT http://localhost:8080/user-update-name/30
+PUT http://localhost:8080/user-update-name/10
 Content-Type: application/json
 
 {
-    "first_name": "Anna",
+    "first_name": "Alexander",
     "last_name": "Kudinov"    
 }
