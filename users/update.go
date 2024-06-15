@@ -16,6 +16,15 @@ func Update(ctx *gin.Context) {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
+
+	// get UserID of the authenticated user from the token to compare it with the userID who owns the account
+	// to make sure that only account owner can update his or her data
+	authUserID := ctx.GetInt64("userID")
+	if authUserID != userID {
+		ctx.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"error": "Not authorized!"})
+		return
+	}
+
 	// verify if user exists in the users table
 	user, err := GetUserByID(userID)
 	if err != nil {
