@@ -4,7 +4,7 @@ import "time"
 
 type User struct {
 	ID        int64
-	Login     string `json:"login" binding:"required,min=3"`
+	Login     string
 	Email     string `json:"email" binding:"required,email"`
 	Password  string `json:"password" binding:"required,min=4"`
 	CreatedAt time.Time
