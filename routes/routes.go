@@ -1,13 +1,32 @@
 package routes
 
 import (
+	"events-app/middleware"
 	"events-app/users"
 
 	"github.com/gin-gonic/gin"
 )
 
 func RegisterRoutes(server *gin.Engine) {
+	// POST: HTTP REQUESTS
 	server.POST("/signup", users.SignUp)
 	server.POST("/login", users.Login)
-	server.PUT("/user-update-name/:id", users.Update)
+
+	// GET: HTTP REQUESTS
+
+	// PUT: HTTP REQUESTS
+
+	// DELETE: HTTP REQUESTS
+
+	// MIDDLEWARE
+	auth := server.Group("/")
+	auth.Use(middleware.Authenticate) // will be applied to all routes in the group
+	// POST: HTTP REQUESTS
+
+	// GET: HTTP REQUESTS
+
+	// PUT: HTTP REQUESTS
+	auth.PUT("/user-update-name/:id", users.Update)
+
+	// DELETE: HTTP REQUESTS
 }
