@@ -8,7 +8,8 @@ import (
 	"github.com/golang-jwt/jwt/v5"
 )
 
-const secretKey = "6bee3ff8034bd862eee945e8fee35a0dda51795a23174e7f98b03ff71d37dadf" // Load key from somewhere, for example a file
+// for production: Load the key from somewhere else,for example a file
+const secretKey = "6bee3ff8034bd862eee945e8fee35a0dda51795a23174e7f98b03ff71d37dadf"
 
 func GenerateToken(email string, userID int64) (string, error) {
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
