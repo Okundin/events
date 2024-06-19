@@ -45,7 +45,7 @@ type Class struct {
 }
 */
 
-// this type is used for retrieving users events nd showing them to the user
+// this type is used with GET http request for retrieving users events and showing them to the user
 type Event struct {
 	Name        string
 	Description string
