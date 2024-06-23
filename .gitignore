@@ -3,3 +3,4 @@ api/user-signup.http
 api/event-01-new.http
 api/event-02-get-all.http
 api/event-03-get.http
+api/event-04-update.http
