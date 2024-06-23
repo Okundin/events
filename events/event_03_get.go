@@ -19,7 +19,7 @@ func GetEvent(ctx *gin.Context) {
 	// check if event exists in the event table or retrieve it
 	event, err := GetEventByID(eventID)
 	if err != nil {
-		ctx.JSON(http.StatusBadRequest, err.Error())
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Event not found!"})
 		return
 	}
 
