@@ -11,6 +11,15 @@ type EventNew struct {
 	UserID      int64
 }
 
+// this type is used with GET http request for retrieving users events and showing them to the user
+type Event struct {
+	Name        string
+	Description string
+	Location    string
+	Date        time.Time
+	UserID      int64
+}
+
 /* Regarding time_format validation, see below explanation why it does not work with JSON.
 Figured out the answer. It has nothing to do with Gin, but what the golang JSON Decoder expects for time values.
 It must be in the format of RFC3339 in order to be successfully decoded when using the JSON binder for ShouldBindJSON, or BindJSON.
@@ -44,12 +53,3 @@ type Class struct {
 	ChallengeID uint   `json:"challenge_id" gorm:"index" binding:"required"`
 }
 */
-
-// this type is used with GET http request for retrieving users events and showing them to the user
-type Event struct {
-	Name        string
-	Description string
-	Location    string
-	Date        time.Time
-	UserID      int64
-}
