@@ -4,3 +4,6 @@ api/event-01-new.http
 api/event-02-get-all.http
 api/event-03-get.http
 api/event-04-update.http
+api/event-05-cancel.http
+api/user-01-signup.http
+api/user-name-update.http
