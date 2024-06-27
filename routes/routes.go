@@ -32,6 +32,7 @@ func RegisterRoutes(server *gin.Engine) {
 	// PUT: HTTP REQUESTS
 	auth.PUT("/user-update-name/:id", users.Update)
 	auth.PUT("/event-update/:id", events.Update)
+	auth.PUT("event-cancel/:id", events.Cancel)
 
 	// DELETE: HTTP REQUESTS
 }
