@@ -20,7 +20,7 @@ func Authenticate(ctx *gin.Context) {
 	// case token is not valid; we also get a UserID value from the token to identify the user sending the HTTP request
 	userID, err := users.VerifyToken(token)
 	if err != nil {
-		ctx.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"error": "Not authorized!"})
+		ctx.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"error": "Not authorized!", "reason": err.Error(), "what to do?": "Please login again"})
 		return
 	}
 
