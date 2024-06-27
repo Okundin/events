@@ -2,7 +2,6 @@ package users
 
 import (
 	"errors"
-	"log"
 	"time"
 
 	"github.com/golang-jwt/jwt/v5"
@@ -39,7 +38,7 @@ func VerifyToken(token string) (userID int64, err error) {
 	})
 
 	if err != nil {
-		log.Fatal(err)
+		return 0, err
 	}
 
 	// comparing the user token with the secret key
