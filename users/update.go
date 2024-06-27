@@ -2,7 +2,6 @@ package users
 
 import (
 	"events-app/db"
-	"log"
 	"net/http"
 	"strconv"
 
@@ -38,7 +37,12 @@ func Update(ctx *gin.Context) {
 		return
 	}
 
-	user.updateName()
+	err = user.updateName()
+	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Could not update name", "reason": err.Error()})
+		return
+	}
+
 	ctx.JSON(http.StatusOK, gin.H{"Success": "First and last name updated!"})
 }
 
@@ -55,10 +59,12 @@ func GetUserByID(userID int64) (UserUpdate, error) {
 	return u, nil
 }
 
-func (u *UserUpdate) updateName() {
+func (u *UserUpdate) updateName() error {
 	query := `UPDATE users SET first_name = $1, last_name = $2 WHERE id = $3;`
 	_, err := db.DB.Exec(query, u.FirstName, u.LastName, u.ID)
 	if err != nil {
-		log.Fatal(err)
+		return err
 	}
+
+	return nil
 }
