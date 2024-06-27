@@ -28,7 +28,8 @@ func SignUp(ctx *gin.Context) {
 		return
 	}
 
-	// create new user in the users DB
+	// create new user in the users table assigning default role 'user'
+	user.Role = "user"
 	err = user.New()
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{"!message": "Could not create user!", "error": err.Error()})
@@ -45,15 +46,12 @@ func (u *User) New() error {
 	hashedPswd := HashPswd(u.Password)
 
 	// saving new user's data to the users table
-	query := "INSERT INTO users (login, email, password, created_at) VALUES ($1, $2, $3, CURRENT_TIMESTAMP) RETURNING id, created_at;"
+	query := "INSERT INTO users (login, email, password, created_at, role) VALUES ($1, $2, $3, CURRENT_TIMESTAMP, $4) RETURNING id, created_at;"
 
-	var returnedID int64
-	err := db.DB.QueryRow(query, u.Login, u.Email, hashedPswd).Scan(&returnedID, &u.CreatedAt)
+	err := db.DB.QueryRow(query, u.Login, u.Email, hashedPswd, u.Role).Scan(&u.ID, &u.CreatedAt)
 	if err != nil {
 		return errors.New(err.Error())
 	}
-
-	u.ID = returnedID
 
 	return nil
 }
