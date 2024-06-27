@@ -1,8 +1,0 @@
-POST http://localhost:8080/signup
-Content-Type: application/json
-
-{
-    "login": "Test46",
-    "email": "tesT46@yandex.ru",
-    "password": "test"
-}
