@@ -1,8 +1,0 @@
-PUT http://localhost:8080/user-update-name/39
-Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QzOEB5YW5kZXgucnUiLCJleHAiOjE3MTg0ODQzNjgsInVzZXJJRCI6Mzl9.lwVDvuVzzQbzmwvx-ZQ13PaJPlFj_y4sLzizz911xKw
-
-{
-    "first_name": "Alexander",
-    "last_name": "Izmestyev"    
-}
